@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>workout</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal workout plan">
+    <meta name="keywords" content="workout, fitness, gym, exercise">
+  </head>
+
+  <body>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+      :root {
+        --green: #697565;
+        --dark-grey: #1E201E;
+        --light-grey: #3C3D37;
+        --white: #ECDFCC;
+      }
+
+      html {
+        background-color: var(--green);
+      }
+
+      section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .card {
+        @media screen and (min-width: 768px) {
+          max-width: 80%;
+        }
+        @media screen and (max-width: 768px) {
+          max-width: 100%;
+        }
+
+        display: flex;
+        justify-content: flex-start;
+        height: 500px;
+        background-color: var(--dark-grey);
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .content {
+        font-family: 'Atkinson Hyperlegible', sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: left;
+        padding: 1rem;
+        width: 100%;
+        color: var(--white);
+        overflow-y: scroll;
+      }
+
+      .content::-webkit-scrollbar {
+        width: 20px;
+      }
+
+      #date {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        font-family: 'Quicksand', sans-serif;
+        background-color: var(--light-grey);
+        width: 90%;
+        border-radius: 4px;
+        margin: 0.5rem;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+      }
+
+      #workout {
+        width: 100%;
+        font-size: 1.5rem;
+
+        ul {
+          padding: 0;
+          margin: 0;
+        }
+
+        p {
+          font-weight: bold;
+          margin: 0;
+          padding: 0.5rem;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        li {
+          list-style: none;
+          padding: 0.5rem;
+        }
+
+      }
+    </style>
+
+    <section>
+      <div class="card">
+        <div class="content">
+          <h1 id="date"></h1>
+          <div id="workout"></div>
+        </div>
+    </section>
+
+    <script>
+      const data =  {
+            "2024-08-27": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-08-28": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-08-29": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-08-30": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-09-02": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-09-03": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-09-04": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-09-05": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-09-06": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-09-09": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-09-10": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-09-11": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-09-12": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-09-13": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-09-16": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-09-17": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-09-18": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-09-19": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-09-20": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-09-23": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-09-24": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-09-25": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-09-26": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-09-27": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-09-30": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-10-01": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-10-02": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-10-03": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-10-04": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-10-07": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-10-08": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-10-09": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-10-10": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-10-11": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-10-14": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-10-15": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-10-16": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-10-17": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-10-18": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-10-21": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-10-22": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-10-23": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-10-24": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-10-25": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-10-28": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-10-29": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-10-30": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-10-31": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-11-01": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-11-04": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-11-05": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-11-06": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-11-07": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-11-08": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-11-11": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-11-12": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-11-13": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-11-14": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-11-15": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-11-18": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-11-19": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-11-20": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-11-21": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-11-22": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-11-25": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-11-26": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-11-27": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-11-28": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-11-29": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-12-02": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-12-03": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-12-04": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            },
+            "2024-12-05": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "back": [
+                "Cable or dumbbell row",
+                "Pull down"
+              ],
+              "hamstrings": [
+                "Leg curl",
+                "Heavy squat"
+              ]
+            },
+            "2024-12-06": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-12-09": {
+              "mobility": [
+                "Split squat",
+                "Stair master"
+              ],
+              "hamstrings": [
+                "Leg curl"
+              ],
+              "quads": [
+                "Light squat",
+                "Leg extension"
+              ]
+            },
+            "2024-12-10": {
+              "shoulders": [
+                "Standing rear delt pull",
+                "Cable lateral raise"
+              ],
+              "triceps": [
+                "Tricept pushdown",
+                "Dips"
+              ],
+              "chest": [
+                "Standing dumbbell press"
+              ]
+            }
+          }
+
+        ;
+
+      const date = new Date();
+      const key = `${date.getFullYear()}-${
+        date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1
+      }-${date.getDate()}`;
+
+      const card = document.querySelector(".card");
+      const content = document.querySelector(".content");
+      const workout = document.querySelector("#workout");
+      const h1 = document.querySelector("#date");
+      h1.textContent = date.toDateString();
+
+      console.log(key);
+
+      todayData = data[key];
+      console.log(todayData);
+      if (todayData) {
+        for (const [key, value] of Object.entries(todayData)) {
+          const ul = document.createElement("ul");
+          ul.innerHTML = `<p>${key}</p>`;
+          value.forEach((item) => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            ul.appendChild(li);
+          });
+          workout.appendChild(ul);
+        }
+      }
+    </script>
+  </body>
+</html>
